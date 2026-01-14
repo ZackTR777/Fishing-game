@@ -1,0 +1,696 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Login Screen */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo i {
+    font-size: 4rem;
+    color: #4facfe;
+    margin-bottom: 10px;
+}
+
+.logo h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.login-form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+}
+
+.input-group i {
+    margin-right: 10px;
+    color: #4facfe;
+}
+
+.input-group input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    color: white;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: #4facfe;
+    border: 2px solid #4facfe;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.guest-option {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.note {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 5px;
+}
+
+.error-message {
+    background: rgba(255, 50, 50, 0.2);
+    border: 1px solid rgba(255, 50, 50, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    display: none;
+}
+
+/* Game Screen */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid #4facfe;
+}
+
+.player-stats h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.stat-row {
+    display: flex;
+    gap: 15px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #4facfe;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4757;
+    color: white;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-content {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Fishing Area */
+.fishing-area {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.water {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(to bottom, #1a73e8, #4facfe);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: wave 3s infinite linear;
+}
+
+@keyframes wave {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100px); }
+}
+
+.fish {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    animation: swim 10s infinite linear;
+}
+
+.fish:nth-child(2) {
+    background: #4ecdc4;
+    animation-delay: -3s;
+    top: 40%;
+}
+
+.fish:nth-child(3) {
+    background: #ffe66d;
+    animation-delay: -6s;
+    top: 70%;
+}
+
+@keyframes swim {
+    0% { left: -50px; }
+    100% { left: 100%; }
+}
+
+.fishing-line {
+    position: absolute;
+    width: 2px;
+    height: 0;
+    background: white;
+    left: 50%;
+    bottom: 0;
+    transition: height 1s ease;
+}
+
+.hook {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ffd700;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    bottom: -10px;
+    left: -9px;
+    animation: hookFloat 2s infinite ease-in-out;
+}
+
+@keyframes hookFloat {
+    0%, 100% { transform: rotate(-45deg) translateY(0); }
+    50% { transform: rotate(-45deg) translateY(-5px); }
+}
+
+.fishing-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-cast {
+    background: linear-gradient(45deg, #00b09b, #96c93d);
+}
+
+.btn-reel {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+}
+
+.btn-reel:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-reel:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Inventory & Shop */
+.inventory, .shop {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.inventory h3, .shop h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: #4facfe;
+}
+
+.inventory-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-name {
+    font-size: 14px;
+}
+
+.item-count {
+    background: #4facfe;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.btn-sell {
+    background: linear-gradient(45deg, #ff9500, #ff5e3a);
+}
+
+.shop-items {
+    display: grid;
+    gap: 10px;
+}
+
+.shop-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.shop-item i {
+    font-size: 24px;
+    color: #4facfe;
+}
+
+.shop-item-info {
+    flex: 1;
+}
+
+.shop-item-info h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.shop-item-info p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 5px;
+}
+
+.price {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+.btn-buy {
+    padding: 8px 15px;
+    background: linear-gradient(45deg, #00b09b, #96c93d);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Chat */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.message.system {
+    align-self: center;
+    background: rgba(255, 215, 0, 0.2);
+    font-style: italic;
+    max-width: 100%;
+    text-align: center;
+}
+
+.message.own {
+    align-self: flex-end;
+    background: rgba(79, 172, 254, 0.3);
+    border-bottom-right-radius: 5px;
+}
+
+.message.other {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.15);
+    border-bottom-left-radius: 5px;
+}
+
+.chat-input {
+    display: flex;
+    padding: 15px;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+/* Leaderboard */
+.leaderboard-container {
+    padding: 20px;
+}
+
+.leaderboard-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    background: rgba(79, 172, 254, 0.5);
+}
+
+.leaderboard-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.leaderboard-entry {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.rank {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.rank-1 { background: rgba(255, 215, 0, 0.5); }
+.rank-2 { background: rgba(192, 192, 192, 0.5); }
+.rank-3 { background: rgba(205, 127, 50, 0.5); }
+
+.entry-info {
+    flex: 1;
+}
+
+.entry-info h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.entry-info p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.entry-score {
+    font-weight: bold;
+    color: #4facfe;
+    font-size: 18px;
+}
+
+.player-rank {
+    background: rgba(79, 172, 254, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Game Messages */
+.game-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px 30px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1001;
+    animation: messagePop 2s ease;
+}
+
+@keyframes messagePop {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    40% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .fishing-controls {
+        flex-direction: column;
+    }
+    
+    .inventory-items {
+        grid-template-columns: 1fr;
+    }
+    
+    .shop-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .modal-content {
+        width: 95%;
+        max-height: 85vh;
+    }
+}
