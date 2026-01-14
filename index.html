@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fishing Adventure</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="screen">
+        <div class="login-container">
+            <div class="logo">
+                <i class="fas fa-fish"></i>
+                <h1>Fishing Adventure</h1>
+            </div>
+            
+            <div class="login-form">
+                <h2>Welcome!</h2>
+                <div id="loginError" class="error-message"></div>
+                
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" placeholder="Username" maxlength="20">
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Password" maxlength="20">
+                </div>
+                
+                <button id="loginBtn" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                
+                <button id="registerBtn" class="btn btn-secondary">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+                
+                <div class="guest-option">
+                    <button id="playAsGuest" class="btn btn-ghost">
+                        Play as Guest
+                    </button>
+                    <p class="note">Guest data won't be saved</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Game Screen -->
+    <div id="gameScreen" class="screen hidden">
+        <div class="game-header">
+            <div class="player-info">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=fish" class="avatar" alt="Avatar">
+                <div class="player-stats">
+                    <h3 id="playerName">Player</h3>
+                    <div class="stat-row">
+                        <span class="stat">
+                            <i class="fas fa-coins"></i>
+                            $<span id="money">100</span>
+                        </span>
+                        <span class="stat">
+                            <i class="fas fa-trophy"></i>
+                            <span id="score">0</span> pts
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-buttons">
+                <button id="openChat" class="icon-btn">
+                    <i class="fas fa-comments"></i>
+                    <span class="badge" id="chatBadge">0</span>
+                </button>
+                <button id="openLeaderboard" class="icon-btn">
+                    <i class="fas fa-crown"></i>
+                </button>
+                <button id="logoutBtn" class="icon-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="game-content">
+            <!-- Fishing Area -->
+            <div class="fishing-area">
+                <div class="water">
+                    <div class="wave"></div>
+                    <div class="fish" id="fish1"></div>
+                    <div class="fish" id="fish2"></div>
+                    <div class="fish" id="fish3"></div>
+                    
+                    <div class="fishing-line">
+                        <div class="hook" id="hook"></div>
+                    </div>
+                </div>
+                
+                <div class="fishing-controls">
+                    <button id="castBtn" class="btn btn-cast">
+                        <i class="fas fa-water"></i> Cast Line
+                    </button>
+                    <button id="reelBtn" class="btn btn-reel" disabled>
+                        <i class="fas fa-fish"></i> Reel In!
+                    </button>
+                </div>
+            </div>
+
+            <!-- Inventory -->
+            <div class="inventory">
+                <h3><i class="fas fa-box"></i> Inventory</h3>
+                <div class="inventory-items">
+                    <div class="item" data-fish="common">
+                        <span class="item-name">Common Fish</span>
+                        <span class="item-count" id="commonCount">0</span>
+                    </div>
+                    <div class="item" data-fish="rare">
+                        <span class="item-name">Rare Fish</span>
+                        <span class="item-count" id="rareCount">0</span>
+                    </div>
+                    <div class="item" data-fish="epic">
+                        <span class="item-name">Epic Fish</span>
+                        <span class="item-count" id="epicCount">0</span>
+                    </div>
+                    <div class="item" data-fish="legendary">
+                        <span class="item-name">Legendary</span>
+                        <span class="item-count" id="legendaryCount">0</span>
+                    </div>
+                </div>
+                
+                <button id="sellAllBtn" class="btn btn-sell">
+                    <i class="fas fa-dollar-sign"></i> Sell All Fish
+                </button>
+            </div>
+
+            <!-- Shop -->
+            <div class="shop">
+                <h3><i class="fas fa-store"></i> Fishing Shop</h3>
+                <div class="shop-items">
+                    <div class="shop-item" data-upgrade="rod">
+                        <i class="fas fa-fishing-rod"></i>
+                        <div class="shop-item-info">
+                            <h4>Better Rod</h4>
+                            <p>Increase catch chance</p>
+                            <span class="price">$500</span>
+                        </div>
+                        <button class="btn btn-buy" data-item="rod">Buy</button>
+                    </div>
+                    
+                    <div class="shop-item" data-upgrade="bait">
+                        <i class="fas fa-worm"></i>
+                        <div class="shop-item-info">
+                            <h4>Premium Bait</h4>
+                            <p>Better rare fish chance</p>
+                            <span class="price">$200</span>
+                        </div>
+                        <button class="btn btn-buy" data-item="bait">Buy</button>
+                    </div>
+                    
+                    <div class="shop-item" data-upgrade="line">
+                        <i class="fas fa-weight-hanging"></i>
+                        <div class="shop-item-info">
+                            <h4>Stronger Line</h4>
+                            <p>Less chance to lose fish</p>
+                            <span class="price">$300</span>
+                        </div>
+                        <button class="btn btn-buy" data-item="line">Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-comments"></i> Global Chat</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Messages will appear here -->
+                    <div class="message system">
+                        Welcome to Fishing Adventure chat!
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Type your message..." maxlength="100">
+                    <button id="sendMessage" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboardModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-crown"></i> Leaderboard</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="leaderboard-container">
+                <div class="leaderboard-tabs">
+                    <button class="tab active" data-tab="daily">Daily</button>
+                    <button class="tab" data-tab="weekly">Weekly</button>
+                    <button class="tab" data-tab="alltime">All Time</button>
+                </div>
+                
+                <div class="leaderboard-list" id="leaderboardList">
+                    <!-- Leaderboard entries will appear here -->
+                </div>
+                
+                <div class="player-rank">
+                    <h3>Your Rank</h3>
+                    <div id="playerRank">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Messages -->
+    <div id="gameMessage" class="game-message hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+                      </html>
